@@ -53,21 +53,147 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-            <H2 class="border-1 border-bottom border-dark">The Code for APP NAME.</H2>
+            <H2 class="border-1 border-bottom border-dark">The Code for TACO CAT</H2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
+                <!-- Code -->
                     <pre class="line-numbers"><code class="language-javascript">
-                            //Call Hello World
-                            function HelloWord(){
-                                alert("Hello World");
+                        //Control Function
+                        //Receive Values
+                        function getValue() {
+                        
+                            //Set the default state to the "alert" div to invis
+                            document.getElementById("alert").classList.add("invisible");
+                        
+                            //target userString input element and grab value after pressing btnSubmit 
+                            //triggering evenlistener.
+                            let origString = document.getElementById("userString").value;
+                            origString = origString.toLowerCase();
+                        
+                            //Validate if string is empty, if so start again and provide alert to user.
+                            if(origString == "") {
+                                
+                                alert("Please enter something!");
+                        
+                             } else {
+                        
+                                //Continue to validate and format text
+                                let validatedString = "";
+                        
+                                for (let i = 0; i < origString.length; i++) {
+                        
+                                    if (isAlpha(origString[i])) {
+                        
+                                        //Once a character has been validated as an alpha char add to new 
+                                        //string which contains only alpha chars. This will be the string 
+                                        //used to compare as a palindrome.
+                                        validatedString += origString[i];
+                        
+                                    }
+                        
+                                }
+                        
+                                //Reverse validated string and lowercase
+                                let reversedString = reverseString(validatedString);
+                        
+                                //Compare the validated string and the reversed string, if they are the same 
+                                //then this fulfils the condition to be considered a palindrome.
+                                let isPalindrome = palindromeCheck(validatedString, reversedString);
+                        
+                                //write to the DOM
+                                displayResults(isPalindrome, reversedString);
+                        
                             }
+                        
+                        }
+                        
+                        //Logic Function used to validate if char is alpha char
+                        function isAlpha(char) {
+                        
+                            //Using REGEX to check if the char is Alpha. This will only work for English chars.
+                            return (/[a-zA-Z]/).test(char);
+                        
+                        }
+                        
+                        //Logic Function Reverse String
+                        function reverseString(stringToReverse) {
+                        
+                            //declare variable to store reversed characters from the validated string.
+                            let reversedString = "";
+                        
+                            for (let i = stringToReverse.length - 1; i >= 0; i--) {
+                        
+                                //using a for loop this will count backwards from the last index, storing each 
+                                //into a new string starting from the 0 index.
+                                reversedString += stringToReverse[i];
+                        
+                            }
+                        
+                            return reversedString;
+                        
+                        }
+                        
+                        //Logic Function to determine if string is a palindrome
+                        function palindromeCheck(forwardString, reversedString) {
+                        
+                            //simple statement comparing the two forward, and reversed strings. If they are 
+                            //equal then return true.
+                            return forwardString == reversedString;
+                        
+                        }
+                        
+                        //Display Results with a bit of formatting.
+                        function displayResults(boolResult, reverse) {
+                        
+                            //Status message is determined by the boolResult value.
+                            if (boolResult == true) {
+                        
+                                //write status message to HTML Heading and msg DIV elements.
+                                document.getElementById("heading").innerHTML = `Well Done! You entered a palindrome!`;
+                                document.getElementById("msg").innerHTML = `Your phrase reversed is: ${reverse}`;
+                        
+                                //reveal hidden div element and update the background color, nice success 
+                                //green for a positive palindrome result.
+                                document.getElementById("alert").classList.remove("alert-danger");
+                                document.getElementById("alert").classList.add("alert-info");
+                                document.getElementById("alert").classList.remove("invisible");
+                        
+                            } else {
+                        
+                                //write status message to HTML Heading and msg DIV elements.
+                                document.getElementById("heading").innerHTML = `Sorry... This isn't a palindrome. `;
+                                document.getElementById("msg").innerHTML = `Your phrase reversed is: ${reverse}`;
+                        
+                                //reveal hidden div element and update the background color, dire alert 
+                                //red for a negative palindrome result.
+                                document.getElementById("alert").classList.remove("alert-info");
+                                document.getElementById("alert").classList.add("alert-danger");
+                                document.getElementById("alert").classList.remove("invisible");
+                        
+                            }
+                        
+                        }
                         </code>
                     </pre>
                 </div>
+                <!-- Code Description -->
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <h3>TACO CAT</h3>
+                    <p>The Taco Cat application operates off a controller function, a few logic functions, and display functions. These operate together to gather information from the user, validate and format the string for processing, reverse and compare against the formated original string. Finally compare the forward and reversed strings to detemine if the provided value is a palindrome. If so write the results to the DOM along with a bit of styling.
+                    <h4>Controller function getValue</h4>
+                    <p>The controller fuction will gather data from the HTML form and enforce validation as well as control the flow of data between other functions in this application</p>
+                    <h4>Logic function palindromeCheck</h4>
+                    <p>The definition of a palindrome is a fragment of text that is the same forward and backwards. The controller function has removed any special characters, form validation ensured only strings could be presented and all white space has been removed as well. This will ensure that a phrase like TaCo CaT! will pass as a palindrome. palindromeCheck with accept the validated text as well as the reversed version but this function will depend on a couple other helper functions that will make sure the text is passed in correctly.</p>
+                    <h5>Helper function isAlpha</h5>
+                    <p>This function uses REGEX statements to check the value against the english alphabet. It will return true if it passes the test</p>
+                    <h5>Helper function reverseString</h5>
+                    <ol>
+                        <li>Declare string variable reversedString </li>
+                        <li>By use of for loops concatenate the last indexed character of the string into the declared reversedString.</li>
+                        <li>Return reversedString once the loop has completed.</li>
+                    </ol>
+                    <h4>Display function</h4>
+                    <p>There are two outcomes, successfully palindrome or failed palindrome check. If the string is a palindrome then display a success message along with the reversed string. There is a light green background shown. The same happens with a negative palindrome check except the background is red and a failed message is displayed. </p>
                 </div>
             </div>
         </div>
