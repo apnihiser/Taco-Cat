@@ -50,8 +50,37 @@
     </nav>
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
-        <div class="container">
-
+        <div class="container mt-5">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <!-- === Left Side === -->
+                <div class="col">
+                    <h1 class="display-5 fw-bold lh-1 mb-3"> TACO CAT: A Coding Project</h1>
+                    <h4 class="lead mb-3">
+                        Taco Cat is a palindrome. A Palindrome is a word, phrase or sequence that reads the same backward as forward. Type in something and find out if it is a palindrom!
+                    </h4>
+                </div>
+                <!-- === Right Side === -->
+                <div class="col">
+                    <h5 class="border-1 border-bottom border-info"> Enter A Palindrome to Verify.</h5>
+                    <form class="row gx-2 gy-2">
+                        <div class="col">
+                            <input id="userString" type="text" class="form-control" placeholder="Enter A String" aria-label="Enter A String">
+                        </div>
+                        <div class="col-12">
+                            <button type="button" id="btnSubmit" class="btn btn btn-info">Check Now</button>
+                        </div>
+                        <div class="mt-5 invisible fade show" id="alert" role="alert">
+                            <h4 class="alert-heading" id="heading">
+                                <!-- Insert Heading Here -->
+                            </h4>
+                            <hr>
+                            <p class="mb-0" id="msg">
+                                <!--  Insert Message Here -->
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
     <!-- ==== Footer Section ==== -->
@@ -62,7 +91,7 @@
                     <div><span class="text-muted">&copy;2021</span> Adam Nihiser | anihiser@gmail.com</div>
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-center">
-                    <img src="/img/tacocat.png" alt="Adam Nihiser Logo" height="48">
+                    <img src="/img/adam_p_nihiser_logo_notitle.png" alt="Adam Nihiser Logo" height="48">
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
@@ -84,6 +113,9 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="/js/site.js"></script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getValue);
+    </script>
 </body>
 
 </html>
